@@ -1,0 +1,43 @@
+<% if signed_in? %>
+
+<h1>Welcome to the Family Blog!</h1>
+
+<% @posts.each do |post| %>
+
+<table class="blog_posts">
+	<tr>
+		<td>
+		
+			<h2><%= link_to post.title, post %></h2>
+	
+			<p>
+				<%= truncate post.text %>
+			</p>
+	
+			<p class="time_posted">
+				<%= time_ago_in_words post.created_at %> ago
+			</p>
+			
+		</td>
+	</tr>
+</table>			
+	
+	
+	
+<% end %>
+
+<center>
+	<%= will_paginate @post %>
+</center>
+
+<p>
+	<center>
+	<%= link_to "New Post", new_post_path %>
+	</center>
+</p>
+
+<% else %>
+
+<% redirect_to root_path %>
+
+<% end %>		
